@@ -1,0 +1,17 @@
+# Version 1 - create an error message
+
+def not_blank_name(question):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        if response != "":
+            print("That is a pretty name!")
+            return response
+
+        else:
+            print("This can't be blank sorry, please enter your name")
+
+
+name = not_blank_name("What is your name?: ")
