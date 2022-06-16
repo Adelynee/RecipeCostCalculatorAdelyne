@@ -1,0 +1,13 @@
+#  Version 1 - create a working code
+
+def errorfunction() -> object:
+    print("sorry, this isn't a valid answer")
+
+
+def workingfunction():
+    print("perfect")
+
+
+variable = input("What is your name?")
+if not variable.isdigit():workingfunction()
+else:errorfunction()
