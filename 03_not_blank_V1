@@ -1,0 +1,17 @@
+# Version 1 - create an error message and the while  loop
+
+def not_blank_recipe(question):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        if response != "":
+            print("Yum, that sounds delicious !")
+            return response
+
+        else:
+            print("This can't be blank sorry, please enter your recipe name")
+
+
+recipe = not_blank_recipe("What is your recipe called?: ")
