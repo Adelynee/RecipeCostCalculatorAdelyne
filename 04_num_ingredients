@@ -1,0 +1,25 @@
+#  Version 1 - create the basic if loop with an error message
+
+def num_ing(question, low_num, high_num):
+    error = "Please enter a whole number between 1 and 50 "
+
+    valid = False
+    while not valid:
+
+        #  Ask user the number and check that it is inbetween 1 - 50
+        try:
+            response = int(input(question))
+
+            if low_num <= response <= high_num:
+                return response
+            else:
+                print(error)
+
+        # If a number in not entered then an error message will print
+        except ValueError:
+            print(error)
+
+
+#  Main routine
+#  Will change question to the recipes name
+num = num_ing("How many ingredients are in your recipe:", 1, 50)
