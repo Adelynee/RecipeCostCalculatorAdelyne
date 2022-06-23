@@ -1,0 +1,24 @@
+# Version 1 - create an error message
+# Version 2 - add error message into loop
+# Version 3 - if an int is entered, print error
+# Version 4 - make sure it prints an error when a decimal is added
+
+def not_blank_name(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        # if name is not blank, program continues
+
+        if response.isalpha():
+            print("That is a pretty name!")
+            return response
+        else:
+            print(error_message)
+
+
+#  MAin routine goes here
+
+name = not_blank_name("What is your name?: ", "Sorry this is an invalid answer, "
+                                              "please enter your name")
