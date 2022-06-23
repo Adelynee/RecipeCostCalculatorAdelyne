@@ -1,0 +1,21 @@
+# Version 1 - create an error message
+# Version 2 - add error message into loop
+# Version 3 - if an int is entered, print error
+
+def not_blank_name(question, error_message1, error_message2):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        # if name is not blank, program continues
+
+        if response.isdigit():
+            print(error_message1)
+        else:
+            print("That is a pretty name!")
+            return response
+
+
+name = not_blank_name("What is your name?: ", "You can not enter a number", "Sorry this can't be blank, "
+                                                                            "please enter your name")
