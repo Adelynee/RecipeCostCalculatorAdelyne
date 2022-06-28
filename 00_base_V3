@@ -1,0 +1,114 @@
+#  Import statements
+
+# Functions go here
+
+# Not blank functions
+
+def not_blank_name(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        # if name is not blank, program continues
+
+        if response.isalpha():
+            print("That is a pretty name!")
+            print("----------------------")
+            return response
+        else:
+            print(error_message)
+
+
+def not_blank_recipe(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        #  if name is not blank, program continues
+
+        if response != "":
+            print("Yum, that sounds delicious !")
+            print("----------------------")
+            return response
+
+        else:
+            print(error_message)
+
+
+#  Number of ingredients
+def num_ing(question, low_num, high_num):
+    error = "That number doesn't seem right. " \
+            "Please enter a whole number between 1 and 50 "
+
+    valid = False
+    while not valid:
+
+        #  Ask user the number and check that it is inbetween 1 - 50
+        try:
+            response = int(input(question))
+
+            if low_num <= response <= high_num:
+                return response
+            else:
+                print(error)
+
+        # If a number in not entered then an error message will print
+        except ValueError:
+            print(error)
+
+
+#  Serving size of recipe
+def serving_recipe(question, low_num, high_num):
+    error = "Please enter a whole number between 1 and 10 "
+
+    valid = False
+    while not valid:
+
+        #  Ask user the number and check that it is inbetween 1 - 50
+        try:
+            response = int(input(question))
+
+            if low_num <= response <= high_num:
+                return response
+            else:
+                print(error)
+
+        # If a number in not entered then an error message will print
+        except ValueError:
+            print(error)
+
+
+# Str checker
+
+
+# Any more functions
+
+# ----- MAIN ROUTINE -----
+
+
+# Set up dictionaries/lists/variables for the ingredients in the recipe
+
+#  Loop to get users name and check that it's not an int
+
+#  Loop to get users recipe name and check that it is not an int
+
+#  Ask the user for how many ingredients are in their recipe
+
+#  Initialise loop so that it runs for the number of ingredients are in the recipe
+#  and ask for the cost per item and how much is needed for the recipe
+
+#  Ask the user how many servings in the recipe
+
+#  Calculate cost per serving
+
+# ----- FINISH MAIN ROUTINE -----
+name = not_blank_name("What is your name?: ", "Sorry this is an invalid answer, "
+                                              "please enter your name")
+
+recipe = not_blank_recipe("What is your recipe called?", "This can't be blank sorry, please enter your recipe name")
+
+num = num_ing("How many ingredients are in {}?:".format(recipe), 1, 50)
+
+ser_rec = serving_recipe("How many servings are in {}?:".format(recipe), 1, 10)
