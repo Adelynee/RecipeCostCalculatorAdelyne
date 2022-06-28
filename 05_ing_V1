@@ -1,0 +1,11 @@
+#  Version 1 - create a basic function that stores ingredients in a list/class
+
+# Start of loop
+
+# Initialise loop so that it runs at least once
+list_ing = []
+
+ing = input("What is ingredient # :\n")
+list_ing.append(ing)
+
+print("Updated list {}".format(list_ing))
