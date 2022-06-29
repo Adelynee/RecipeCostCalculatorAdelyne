@@ -1,0 +1,67 @@
+#  Import statements
+
+# Functions go here
+
+# Not blank functions
+
+def not_blank_name(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        # if name is not blank, program continues
+
+        if response != "":
+            print("That is a pretty name!")
+            return response
+
+        else:
+            print(error_message)
+
+
+def not_blank_recipe(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        #  if name is not blank, program continues
+
+        if response != "":
+            print("Yum, that sounds delicious !")
+            return response
+
+        else:
+            print(error_message)
+
+
+# Str checker
+
+
+# Any more functions
+
+# ----- MAIN ROUTINE -----
+
+
+# Set up dictionaries/lists/variables for the ingredients in the recipe
+
+#  Loop to get users name and check that it's not an int
+
+#  Loop to get users recipe name and check that it is not an int
+
+#  Ask the user for how many ingredients are in their recipe
+
+#  Initialise loop so that it runs for the number of ingredients are in the recipe
+#  and ask for the cost per item and how much is needed for the recipe
+
+#  Ask the user how many servings in the recipe
+
+#  Calculate cost per serving
+
+# ----- FINISH MAIN ROUTINE -----
+
+name = not_blank_name("What is your name?: ", "Sorry this can't be blank, "
+                                              "please enter your name")
+recipe = not_blank_recipe("What is your recipe called?", "This can't be blank sorry, please enter your recipe name")
+
