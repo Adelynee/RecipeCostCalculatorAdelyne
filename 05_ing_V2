@@ -1,0 +1,43 @@
+#  Version 1 - create a basic function that stores ingredients in a list/class
+#  Version 2 - incorporate while, if and else statements
+
+def ingredient_names(question, error_message):
+    recipe_complete = False
+    list_ing = []
+    count = 0
+    valid = False
+
+    while valid == False:
+        number_ing = input(question)
+
+        if number_ing.isnumeric():
+            valid = True  # if user enters a number the next part will run, asking for the ingredients
+        else:
+            print(error_message)
+
+    while recipe_complete == False:
+        ing = input("What is ingredient {}:\n".format(count + 1))
+        list_ing.append(ing)
+        count += 1
+
+        print("Updated list {}\n\n".format(list_ing))  # prints the ingredients entered so far
+
+        if int(number_ing) == int(count):
+            correct_ing = input("Is this all the ingredients for the recipe?:\n {} \n".format(list_ing))
+
+            if correct_ing == "no":
+                add_no_ing = input("How many more ingredients are there:\n")
+                # if user forgets ingredients at the start they can add more
+
+                number_ing = int(number_ing) + int(add_no_ing)
+                # This lets the user enter how many more ingredients to add
+
+
+            else:
+                print("Thanks for entering the ingredients")
+                # This is where you can add the next function
+                recipe_complete = True
+
+
+ingredient_names("How many ingredient are there in this recipe:\n",
+                 "Sorry this can't be a string, please enter your ingredient")
