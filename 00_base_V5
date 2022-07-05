@@ -1,0 +1,129 @@
+#  Import statements
+
+# Functions go here
+
+# Not blank functions
+
+def not_blank_name(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        # if name is not blank, program continues
+
+        if response.isalpha():
+            print("That is a pretty name!")
+            print("----------------------")
+            return response
+        else:
+            print(error_message)
+
+
+def not_blank_recipe(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        #  if name is not blank, program continues
+
+        if response != "":
+            print("Yum, that sounds delicious !")
+            print("----------------------")
+            return response
+
+        else:
+            print(error_message)
+
+
+#  Serving size of recipe
+def serving_recipe(question, low_num, high_num):
+    error = "Please enter a whole number between 1 and 10 "
+
+    valid = False
+    while not valid:
+
+        #  Ask user the number and check that it is inbetween 1 - 50
+        try:
+            response = int(input(question))
+
+            if low_num <= response <= high_num:
+                return response
+            else:
+                print(error)
+
+        # If a number in not entered then an error message will print
+        except ValueError:
+            print(error)
+
+
+#  Ask the user for the ingredients name in a loop and store in a list
+
+def ingredient_names(question, error_message):
+    recipe_complete = False
+    list_ing = []
+    count = 0
+    valid = False
+
+    while valid == False:
+        number_ing = input(question)
+
+        if number_ing.isnumeric():
+            valid = True  # if user enters a number the next part will run, asking for the ingredients
+        else:
+            print(error_message)
+
+    while recipe_complete == False:
+        ing = input("What is ingredient {}:".format(count + 1))
+        list_ing.append(ing)
+        count += 1
+
+        print("Current list {}\n".format(list_ing))  # prints the ingredients entered so far
+
+        if int(number_ing) == int(count):
+            correct_ing = input(
+                "Is this all the ingredients {}? Please enter yes or no:\n {} \n".format(recipe, list_ing))
+
+            if correct_ing == "no":
+                add_no_ing = input("How many more ingredients are there in {}?:\n".format(recipe))
+                # if user forgets ingredients at the start they can add more
+
+                number_ing = int(number_ing) + int(add_no_ing)
+                # This lets the user enter how many more ingredients to add
+
+
+            else:
+                print("Thanks for entering the ingredients for {}".format(recipe))
+                # This is where you can add the next function
+                recipe_complete = True
+
+
+# Any more functions
+
+# ----- MAIN ROUTINE -----
+
+
+#  Loop to get users name and check that it's not an int
+
+#  Loop to get users recipe name and check that it is not an int
+
+#  Ask the user for how many ingredients are in their recipe
+
+#  Initialise loop so that it runs for the number of ingredients are in the recipe
+#  and ask for the cost per item and how much is needed for the recipe
+
+#  Ask the user how many servings in the recipe
+
+#  Calculate cost per serving
+
+# ----- FINISH MAIN ROUTINE -----
+name = not_blank_name("What is your name?: ", "Sorry this is an invalid answer, "
+                                              "please enter your name")
+
+recipe = not_blank_recipe("What is your recipe called?", "This can't be blank sorry, please enter your recipe name")
+
+ser_rec = serving_recipe("How many servings are in {}?:".format(recipe), 1, 10)
+
+ingredient_names("How many ingredient are there in {}?:".format(recipe),
+                 "Sorry this can't be a string, please enter your ingredient")
