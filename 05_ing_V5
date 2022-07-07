@@ -1,0 +1,101 @@
+#  Version 1 - create a basic function that stores ingredients in a list
+#  Version 2 - incorporate while, if and else statements
+#  Version 3 - make the code look more 'aesthetic' and add a counter
+#  Version 4 - add serving size and error messages and print updated lists
+#  Version 5 - add error preventions
+
+
+def ingredient_names(question, error_message):
+    recipe_complete = False
+    list_ing = []
+    list_quant = []
+    count = 0
+    valid = False
+    quanity_ing = False
+    idx = 0
+    displaying_value_list = []
+
+    while valid == False:
+        number_ing = input(question)
+
+        if number_ing.isnumeric():
+            valid = True  # if user enters a number the next part will run, asking for the ingredients
+        else:
+            print(error_message)
+
+    while recipe_complete == False:
+        ing_number = False
+        adding_ing_number = False
+        yes_or_no_entered = False
+
+        while ing_number == False:
+            ing = input("What is ingredient {}:\n".format(count + 1))
+            if ing.isalpha():
+                list_ing.append(ing)
+                count += 1
+                ing_number = True
+
+            else:
+                print("This must be an ingredient name")
+
+        print("Updated list {}\n\n".format(list_ing))  # prints the ingredients entered so far
+
+        if int(number_ing) == int(count):
+            while yes_or_no_entered == False:
+                correct_ing = input("Is this all the ingredients for the recipe?: (yes or no)\n {} \n".format(list_ing))
+
+                if correct_ing == "yes" or correct_ing == "yup":
+                    print("Thanks for entering the ingredients\n\n")
+                    recipe_complete = True
+                    yes_or_no_entered = True
+
+                if correct_ing == "no" or correct_ing == "nah":
+                    while adding_ing_number == False:
+                        add_no_ing = input("How many more ingredients are there:\n")
+
+                        if add_no_ing.isnumeric():
+                            number_ing = int(number_ing) + int(add_no_ing)
+                            yes_or_no_entered = True
+
+                            # This lets the user enter how many more ingredients to add
+                            adding_ing_number = True
+
+                        else:
+                            print("This must be a number of ingredients")
+                        # if user forgets ingredients at the start they can add more
+
+                if correct_ing == "no" or correct_ing == "nah" or correct_ing == "yes" or correct_ing == "yup":
+                    print()
+                else:
+                    print("Must be a 'yes' or 'no'")
+
+    while quanity_ing == False:
+        number_check = False
+
+        while number_check == False:
+            value = input("What weight do you want for {}: (In grams)\n".format(list_ing[idx]))
+            if value.isnumeric() or value.isdecimal and not value.isalpha:
+                list_quant.append(value)
+
+                displaying_value_list.append(list_ing[idx])  # adding the ing name and value to a temporary list
+                displaying_value_list.append(list_quant[idx] + "g")  # ^
+                # displaying the ing with the value next to it
+                print("Updated Value list: {}\n".format(displaying_value_list))
+
+                if idx + 1 < len(list_ing):
+                    idx += 1
+                else:
+                    print("Thanks for entering the values for ingredients\n\n")
+                    # this list "list_quant" is the list with the values
+                    # This is where you can add the next function
+                    number_check = True
+                    quanity_ing = True
+
+            else:
+                print("This must be a number value\n\n")
+                number_check = True
+
+
+ingredient_names("How many ingredient are there in this recipe:\n",
+                 "Sorry this can't be a string, please enter your value")
+
