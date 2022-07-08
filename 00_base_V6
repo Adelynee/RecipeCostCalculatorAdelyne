@@ -1,0 +1,244 @@
+#  Import statements
+
+# Functions go here
+
+# Not blank functions
+
+def not_blank_name(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        # if name is not blank, program continues
+
+        if response.isalpha():
+            print("That is a pretty name!")
+            print("----------------------")
+            return response
+        else:
+            print(error_message)
+
+
+def not_blank_recipe(question, error_message):
+    valid = False
+
+    while not valid:
+        response = input(question)
+
+        #  if name is not blank, program continues
+
+        if response != "":
+            print("Yum, that sounds delicious !")
+            print("----------------------")
+            return response
+
+        else:
+            print(error_message)
+
+
+#  Serving size of recipe
+def serving_recipe(question, low_num, high_num):
+    error = "Please enter a whole number between 1 and 10 "
+
+    valid = False
+    while not valid:
+
+        #  Ask user the number and check that it is inbetween 1 - 50
+        try:
+            response = int(input(question))
+
+            if low_num <= response <= high_num:
+                return response
+            else:
+                print(error)
+
+        # If a number in not entered then an error message will print
+        except ValueError:
+            print(error)
+
+
+#  Ask the user for the ingredients name in a loop and store in a list
+
+def ingredient_names(question, error_message):
+    recipe_complete = False
+    price_ing_section = False
+    list_ing = []
+    list_quant = []
+    list_price = []
+    list_quanity_4price = []
+    count = 0
+    valid = False
+    quanity_ing = False
+    idx = 0
+    quanity_idx = 0
+    price_idx = 0
+    displaying_value_list = []
+
+    ################################################################################################
+    ### Asking Number of ingredients in recipe
+
+    while valid == False:
+        number_ing = input(question)
+
+        if number_ing.isnumeric():
+            valid = True  # if user enters a number the next part will run, asking for the ingredients
+        else:
+            print(error_message)
+
+    ################################################################################################
+    ### Asking for ingredients
+
+    while recipe_complete == False:
+        ing_number = False
+        adding_ing_number = False
+        yes_or_no_entered = False
+
+        while ing_number == False:
+            ing = input("What is ingredient {}?:\n".format(count + 1))
+            if ing.isalpha():
+                list_ing.append(ing)
+                count += 1
+                ing_number = True
+
+            else:
+                print("This must be an ingredient name")
+
+        print("Updated list {}\n\n".format(list_ing))  # prints the ingredients entered so far
+
+        if int(number_ing) == int(count):
+            while yes_or_no_entered == False:
+                correct_ing = input("Is this all the ingredients for the recipe?: (yes or no)\n {} \n".format(list_ing))
+
+                if correct_ing == "yes" or correct_ing == "yup":
+                    print("Thanks for entering the ingredients\n\n")
+                    recipe_complete = True
+                    yes_or_no_entered = True
+
+                if correct_ing == "no" or correct_ing == "nah":
+                    while adding_ing_number == False:
+                        add_no_ing = input("How many more ingredients are there:\n")
+
+                        if add_no_ing.isnumeric():
+                            number_ing = int(number_ing) + int(add_no_ing)
+                            yes_or_no_entered = True
+
+                            # This lets the user enter how many more ingredients to add
+                            adding_ing_number = True
+
+                        else:
+                            print("This must be a number of ingredients")
+                        # if user forgets ingredients at the start they can add more
+
+                if correct_ing == "no" or correct_ing == "nah" or correct_ing == "yes" or correct_ing == "yup":
+                    print()
+                else:
+                    print("Must be a 'yes' or 'no'")
+
+    ################################################################################################
+    ### Asking for price of ingredients, and the quantity for that price
+
+    while price_ing_section == False:
+        displaying_price_list = []
+        ing_price = False
+        quanity_price = False
+
+        while ing_price == False:
+            price = input("How much does {}'s cost to buy ? (in $)\n".format(list_ing[price_idx]))  ####quanity_idx
+
+            if price.isnumeric() or price.isdecimal() and not price.isalpha():
+                list_price.append(price)
+                price_idx += 1
+                ing_price = True
+
+            else:
+                print(error_message)
+
+        displaying_price_list.append("$" + list_price[price_idx - 1])
+        displaying_price_list.append(list_ing[price_idx - 1])
+
+        print("Updated list {}\n\n".format(displaying_price_list))  # prints the prices for ingredients entered so far
+
+        if int(price_idx) == len(list_ing):
+            while quanity_price == False:
+
+                if int(quanity_idx) < len(list_ing):
+                    quanity_ing_price = input(
+                        "What quanity in grams does $" + (list_price[quanity_idx]) + " of {} get?\n".format(
+                            list_ing[quanity_idx]))
+                    if quanity_ing_price.isnumeric():
+                        list_quanity_4price.append(quanity_ing_price)
+
+                        displaying_price_list = []
+                        displaying_price_list.append("$" + list_price[quanity_idx - 1])
+                        displaying_price_list.append(list_ing[quanity_idx - 1])
+                        displaying_price_list.append(quanity_ing_price + "g")
+                        print("Updated list {}\n\n".format(displaying_price_list))
+
+                        quanity_idx += 1
+                    else:
+                        print("This must be a number value\n\n")
+
+                else:
+                    print("Thanks for entering the quanity of price for ingredients\n\n")
+                    quanity_price = True
+                    price_ing_section = True
+
+    ################################################################################################
+    ### Asking for quantity of ingredients
+
+    while quanity_ing == False:
+        number_check = False
+
+        while number_check == False:
+            value = input("How many grams is required of {} for the recipe of {}?: (In grams)\n".format(list_ing[idx],(recipe)))
+            if value.isnumeric() or value.isdecimal() and not value.isalpha():
+                list_quant.append(value)
+
+                displaying_value_list.append(list_ing[idx])  # adding the ing name and value to a temporary list
+                displaying_value_list.append(list_quant[idx] + "g")  # ^
+                # displaying the ing with the value next to it
+                print("Updated Value list: {}\n".format(displaying_value_list))
+
+                if idx + 1 < len(list_ing):
+                    idx += 1
+                else:
+                    print("Thanks for entering the values for ingredients\n\n")
+                    # this list "list_quant" is the list with the values
+                    # This is where you can add the next function
+                    number_check = True
+                    quanity_ing = True
+
+            else:
+                print("This must be a number value\n\n")
+                number_check = True
+
+
+# Any more functions
+
+# ----- MAIN ROUTINE -----
+
+
+#  Loop to get users name and check that it's not an int
+
+#  Loop to get users recipe name and check that it is not an int
+
+#  Ask the user for how many ingredients are in their recipe
+
+#  Initialise loop so that it runs for the number of ingredients are in the recipe
+#  and ask for the cost per item and how much is needed for the recipe
+
+#  Ask the user how many servings in the recipe
+
+#  Calculate cost per serving
+
+# ----- FINISH MAIN ROUTINE -----
+name = not_blank_name("What is your name?: ", "Sorry this is an invalid answer, "
+                                              "please enter your name")
+
+recipe = not_blank_recipe("What is your recipe called?", "This can't be blank sorry, please enter your recipe name")
+
+ser_rec = serving_recipe("How many servings are in {}?:".format(recipe), 1, 10)
+
+ingredient_names("How many ingredient are there in {}?:\n".format(recipe),
+                 "Invalid answer , please enter valid answer")
