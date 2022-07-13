@@ -1,0 +1,37 @@
+def save_recipe(recipe_name, list_ing, list_price, list_quanity_4price, list_quant, total_cost):
+    list_idx = 0
+    lists = []
+
+    lists.append("")
+    lists.append(list_ing)
+    lists.append(list_price)
+    lists.append(list_quanity_4price)
+    lists.append(list_quant)
+
+    try:
+        recipe_file = open("Saved_recipes.txt", 'r')
+
+    except:
+        recipe_file = open("Saved_recipes.txt", 'w')
+        recipe_file.write("0")
+
+    recipe_file = open("Saved_recipes.txt", 'w')
+
+    total_cost = str(total_cost)
+    recipe_file.write(recipe_name + "\n")
+    recipe_file.write(total_cost + "\n")
+
+    print("list_idx", list_idx)
+    print("len(list_ing)", len(list_ing))
+
+    print("lists", lists)
+    while list_idx < len(list_ing):
+
+        # opens txt file in write mode
+        with open("Saved_recipes.txt", 'w') as txt:
+            for item in lists:
+                # write each item on a new line
+                txt.write("%s\n" % item)
+            print('Done')
+
+        list_idx += 1
