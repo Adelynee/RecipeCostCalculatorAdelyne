@@ -1,0 +1,30 @@
+def calcuations(list_ing, list_price, list_quanity_4price, list_quant):
+    print("ingredients in recipe", list_ing)
+    print("ingredients price that the user has bought", list_price)
+    print("ingredients quantity that the user has bought", list_quanity_4price)
+    print("ingredients quantity wanted", list_quant)
+    print("\n \n")
+
+    ################################################################################################
+    ### Recipe calcuations
+    calcuations_comp = False
+    idx = 0
+    total_cost = 0
+
+    while calcuations_comp == False:
+        if idx < len(list_ing):
+            list_quant_var = list_quant[idx]
+            list_quanity_4price_var = list_quanity_4price[idx]
+            list_price_var = list_price[idx]
+
+            exact_cost = ((int(list_quant_var) / int(list_quanity_4price_var)) * int(list_price_var))
+            # print(exact_cost)
+            total_cost += exact_cost
+
+            print("The exact cost for {}".format(list_ing[idx]) + " is ${}".format(exact_cost))
+            idx += 1
+
+        else:
+            calcuations_comp = True
+    print("\n")
+    print("The exact total cost for this reicpe is ${}".format(total_cost))
